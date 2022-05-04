@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="row" style="margin-top: 3%;">
+        <div style="text-align: right; margin-bottom: 2%;">
+            <a href=""><button class="btn btn-success"><i class="fa fa-chevron-circle-left"></i> Back</button></a>
+        </div>
+
+        <p>?) -----------</p>
+    </div>
+    <div class="row p2" style="margin-top: 2%;padding: auto;">
+        <div class="col">
+            <button class="btn btn-dark" style="margin-right: 4px;" (click)="findTotalMark()">{{totalText}}</button>
+            <button class="btn btn-danger" style="margin-right: 4px;"
+                (click)="findAverageMark()">{{averageText}}</button>
+            <button class="btn btn-warning" style="margin-right: 4px;" (click)="findResult()">{{resultText}}</button>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 2%;">
+        <div class="col">
+            <p><b>Timetable</b></p>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>ROLL NO</th>
+                        <th>NAME</th>
+                        <th>SUB-1</th>
+                        <th>SUB-2</th>
+                        <th>SUB-3</th>
+                        <th>SUB-4</th>
+                        <th>SUB-5</th>
+                        <th *ngIf="totalFlag">TOTAL</th>
+                        <th *ngIf="averageFlag">Average</th>
+                        <th *ngIf="resultFlag">RESULT</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let student of students index as i">
+                        <td>{{i+1}}</td>
+                        <td>{{student['name']}}</td>
+                        <td>{{student['sub-1']}}</td>
+                        <td>{{student['sub-2']}}</td>
+                        <td>{{student['sub-3']}}</td>
+                        <td>{{student['sub-4']}}</td>
+                        <td>{{student['sub-5']}}</td>
+                        <td *ngIf="totalFlag">
+                            {{student['sub-1']+student['sub-2']+student['sub-3']+student['sub-4']+student['sub-5']}}
+                        </td>
+                        <td *ngIf="averageFlag">
+                            {{(student['sub-1']+student['sub-2']+student['sub-3']+student['sub-4']+student['sub-5'])/5}}
+                        </td>
+                        
+                            <td  style="background-color: green;color: white;"
+                                *ngIf="resultFlag && student['sub-1']+student['sub-2']+student['sub-3']+student['sub-4']+student['sub-5']>130;else elseBlockShow">
+                                PASS</td>
+                            <ng-template #elseBlockShow>
+                                <td *ngIf="resultFlag" style="background-color: red;color: white;">FAILLED</td>
+                            </ng-template>
+                       
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

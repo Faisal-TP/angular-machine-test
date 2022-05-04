@@ -1,0 +1,63 @@
+<div class="container">
+    <div class="row" style="margin-top: 3%;">
+        <div style="text-align: right; margin-bottom: 2%;">
+            <a href=""><button class="btn btn-success"><i class="fa fa-chevron-circle-left"></i> Back</button></a>
+        </div>
+
+        <p>?) -----------</p>
+    </div>
+    <div class="row p2" style="margin-top: 2%;padding: auto;">
+
+        <form method="post" #values="ngForm" (ngSubmit)="addStudents(values)">
+            <div class="row">
+              <div class="col-md-3">
+                <input type="text" class="form-control" placeholder="Name" name="name" ngModel required #name="ngModel">
+              </div>
+              <div class="col-md-3">
+                <input type="text" class="form-control" placeholder="Place" name="place" ngModel required
+                #place="ngModel">
+              </div>
+              <div class="col-md-3">
+                <input type="text" class="form-control" placeholder="Contact" name="contact" ngModel required
+                    #contact="ngModel">
+              </div>
+              <div class="col-md-3">
+                <button class="btn btn-info">Register</button>
+              </div>
+            </div>
+          </form>
+    </div>
+    <div class="row" style="margin-top: 2%;">
+        <div class="col-md-12">
+            <button class="btn btn-danger" (click)="clearAll()">Clear all</button>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top: 2%;">
+        <div class="col">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>ROLL NO</th>
+                        <th>NAME</th>
+                        <th>PLACE</th>
+                        <th>CONTACT</th>
+                        <th>REMOVE</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let s of students index as i">
+                        <td>{{i+1}}</td>
+                        <td>{{s['name']}}</td>
+                        <td>{{s['place']}}</td>
+                        <td>{{s['contact']}}</td>
+                        <td style="color: red;"><i class="fa fa-trash" (click)="removeIem(i)"></i></td>
+                    </tr>
+                    <tr *ngIf="students==''">
+                        <td colspan="5" style="color: red;">No records Found!</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
